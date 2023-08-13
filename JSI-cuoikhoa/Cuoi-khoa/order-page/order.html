@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-coffee 98 VTP | Đặt hàng</title>
+    <link rel="icon" type="image" href="../images/logo.png">
+    <link rel="stylesheet" href="order.css">
+    <script src="https://kit.fontawesome.com/b7b8c8f974.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sevillana&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Sevillana&display=swap');
+    </style>
+</head>
+<body>
+    <!-- navbar -->
+    <div id="header">
+        <div id="nav-list">
+            <nav class="navbar sticky-top navbar-expand-lg navbar-dark">
+                <div class="container-fluid">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                        <div class="navbar-nav">
+                            <a class="nav-link" aria-current="page" href="../main-page/index.html">Trang chủ</a>
+                            <a class="nav-link" href="../main-page/index.html#about">Về chúng tôi</a>
+                            <a class="nav-link active" href="#page">Đặt hàng</a>
+                            <a class="nav-link" href="#contacts">Liên hệ</a>                       
+                            <a class="nav-link" href="../main-page/index.html#about">Khuyến mãi</a>                                                
+                            <a class="nav-link" href="../main-page/index.html#all-product">Nổi bật</a>                    
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            <form id="search" action="#">
+                <input class="search-item" type="text" placeholder="Search.." name="search">
+                <button class="search-item" type="submit"><i class="fa fa-search"></i></button>
+            </form>
+            <div>
+                <div id="login">
+                    <a href="../register/register.html">Đăng ký</a>
+                    <a href="../login/login.html">Đăng nhập</a>
+                </div>
+                <div id="welcome" >
+                    <div style="display: flex; align-items: center;">
+                        <i class="fa-solid fa-user" style="color: #ffffff;"></i>
+                        <h3 id="username"></h3>
+                    </div>   
+                    <a id="logout" href=""><b>Đăng xuất</b></a>
+                </div>               
+            </div>
+        </div>
+        
+
+    </div>
+
+    <div class="page">
+        <!-- list -->
+        <div class="list">           
+            <h2 class="main-selection selection" onclick="show('all')">Tất cả</h2>
+
+            <p class="selection" onclick="show('coffee')">Cà phê</p>
+
+            <p class="selection" onclick="show('fruit-tea')">Trà hoa quả</p>
+
+            <p class="selection" onclick="show('milk-tea')">Trà sữa</p>
+
+            <p class="selection" onclick="show('yogurt')">Sữa chua</p>
+
+            <p class="selection" onclick="show('juice')">Nước ép hoa quả</p>
+
+            <p class="selection" onclick="show('smoothie')">Sinh tố</p>
+
+            <p class="selection" onclick="show('blended-ice')">Đá xay</p>
+
+            <p class="selection" onclick="show('food')">Đồ ăn</p>
+
+            <p class="selection" onclick="show('other')">Đặc biệt</p>
+
+        </div>
+        
+
+        <!-- menu -->
+        <div class="display">
+            <div class="category" id="coffee">
+                <h1>Cà phê</h1>
+                <div class="product-panel">
+                    
+                </div>
+            </div>
+
+            <div class="category" id="fruit-tea">
+                <h1>Trà hoa quả</h1>
+                <div class="product-panel">
+
+                </div>
+            </div>
+
+            <div class="category" id="milk-tea">
+                <h1>Trà sữa</h1>
+                <div class="product-panel">
+
+                </div>
+            </div>
+
+            <div class="category" id="yogurt">
+                <h1>Sữa chua</h1>
+                <div class="product-panel">
+                    
+                </div>
+            </div>
+
+            <div class="category" id="juice">
+                <h1>Nước ép hoa quả</h1>
+                <div class="product-panel">
+
+                </div>
+            </div>
+
+            <div class="category" id="smoothie">
+                <h1>Sinh tố</h1>
+                <div class="product-panel">
+                   
+                </div>
+            </div>
+
+            <div class="category" id="blended-ice">
+                <h1>Đá xay</h1>
+                <div class="product-panel">
+                    
+                </div>
+            </div>
+
+            <div class="category" id="food">
+                <h1>Đồ ăn</h1>
+                <div class="product-panel">
+                    
+                </div>
+            </div>
+
+            <div class="category" id="other">
+                <h1>Đặc biệt</h1>
+                <div class="product-panel">
+                    
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+
+
+    <!-- Pending -->
+    <div id="pending">
+        <div id="shopping-toggle">
+            <i class="fa-solid fa-cart-shopping" style="color: white;"></i>
+            <i id="open-shoplist" class="fa-solid fa-arrow-up-from-bracket"></i>
+        </div>
+        <div id="pending-items">
+            <div id="card-container">
+
+                <!-- <div class="order-card">
+                    <img class="order-image" src="../images/products/coffee/hot-choco-coffee.jpg" alt="">
+                    <div class="order-title">
+                        <h6>Lorem, ipsum</h6>
+                        <p style="border-right: 1px solid rgb(189, 189, 189); padding-right: 4px;">xXX</p>
+                    </div>
+                    <p>xx.xxxd</p>
+                    <form action="">
+                        <button style="height: 20px; width: 20px; font-size: 10px; padding: 0;" class="cancel-order" type="submit">X</button>
+                    </form>
+                </div> -->
+            </div>
+            <button id="orderConfirm">Order</button>
+        </div>
+    </div>
+
+    <!-- Pop-up -->
+    <div id="order-board">
+        <div style="margin:0px; display: flex; justify-content: flex-end; align-items: center;">
+            <i class="cancel fa-solid fa-xmark" onclick="showItem()"></i>
+        </div>
+        <div class="order-content">
+            <img id="image" src="../images/product-slideshow/citron.jpg" alt="">
+            <div class="product-description">
+                <h1 class="desc" id="title">Lorem, ipsum.</h1>
+                <h2 class="desc" id="price">xyz</h2>
+                <p class="desc" id="product-info">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laborum placeat in nulla totam et fugiat
+                    sapiente. Illo labore, accusamus earum inventore corrupti, ipsam suscipit tempore voluptas doloribus
+                    tempora magni nobis.</p>
+
+                
+                
+                    <p style="margin: 0;"><b>Số lượng</b></p>
+                    <input style="margin: 10px; margin-top: 5px;" onkeydown="return false" type="number" id="quantity" min="1" max="60" value="1">
+                    <form action="">
+                        <button id="order-button">
+                            <h1>ORDER</h1>
+                        </button>              
+                    </form>
+                          
+                
+                
+                
+            </div>
+        </div>
+
+    </div>
+
+    <div id="special-board">
+        <div style="margin:0px; display: flex; justify-content: flex-end;">
+            <i class="cancel fa-solid fa-xmark" onclick="showSpecial()"></i>
+        </div>
+        <div class="order-content">
+            <img id="spec-image" src="../images/product-slideshow/citron.jpg" alt="">
+            <div class="product-description">
+                <h1 class="desc" id="spec-title">Lorem, ipsum.</h1>
+                <form action="">
+
+                    <label for="black-coffee">
+                        <input type="checkbox" name="type" id="black-coffee"> Cafe đen hạt mộc - 
+                        <p class="cost" id="cost1">a</p>
+                    </label>
+
+                    <label for="milk-coffee">
+                        <input type="checkbox" name="type" id="milk-coffee"> Cafe sữa hạt mộc - 
+                        <p class="cost" id="cost2">a</p>
+                    </label>
+
+                    <label for="bac-xiu">
+                        <input type="checkbox" name="type" id="bac-xiu"> Bạc xỉu -
+                        <p class="cost" id="cost3">a</p>
+                    </label>
+
+                </form>
+                <p class="desc">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laborum placeat in nulla totam et fugiat
+                    sapiente. Illo labore, accusamus earum inventore corrupti, ipsam suscipit tempore voluptas doloribus
+                    tempora magni nobis.</p>
+                <h1 class="order-button">ORDER</h1>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+    <!-- footer -->
+    <div id="footer">
+        <div id="summary">
+            <div class="general-info">
+                <h4 class="title">Giới thiệu</h4>
+                <a class="footer-item" href="https://trungnguyencoffeevn.com/?gclid=Cj0KCQiAm5ycBhCXARIsAPldzoXcFGzYS1e101dnjBPr_TZ475ymJvc52jlPJza-INt0AkgrfVRZ0NQaAsqnEALw_wcB">Công ty mẹ</a>
+                <a class="footer-item" href="about.html">Về chúng tôi</a>
+                <a class="footer-item" href="https://www.facebook.com/ecoffee.98vtp/">Facebook</a>
+                <a class="footer-item" href="../order.html">Đặt hàng</a>
+                
+
+            
+            </div>
+
+            <div id="contacts">
+                <div class="important-footer">
+                    <h4 class="title">Liên hệ</h4>
+                    <p><i class="fa-solid fa-phone"></i> Đặt hàng: 024-3832-9898/093-633-9898</p>
+                    <p><i class="fa-solid fa-map-location-dot"></i> Địa chỉ chi nhánh: 98 Vũ Trọng Phụng, Thanh Xuân, Hà Nội</p>
+                </div>                
+                <img src="../images/logo.png" alt="">
+            </div>
+
+
+        </div>
+
+        <div id="info">
+            <div>
+                <p>CƠ SỞ NHƯỢNG QUYỀN KINH DOANH TRUNG NGUYÊN E-COFFEE 98 VŨ TRỌNG PHỤNG</p>
+                <p>Người đại diện: Đào Thị Thanh Tâm</p>
+                <p>Địa chỉ liên hệ: 98 Vũ Trọng Phụng, Thanh Xuân, Hà Nội</p>
+                <p>Điện thoại: 024-3832-9898 / 093-633-9898</p>    
+            </div>
+           
+            <div id="follow">
+                <p>Theo dõi chúng tôi trên Facebook</p>
+                <a href="https://www.facebook.com/ecoffee.98vtp/"><img src="../images\icon.png" alt="" srcset=""></a>
+            </div>
+            
+        </div>
+        
+    </div>
+
+
+
+
+
+
+
+    
+</body>
+<!-- scripts -->
+<script type="module" src=order-scripts/order-data.js"></script>
+<script src="../main-page/index-scripts/navbar.js"></script>
+<script src="order-scripts/list.js"></script>
+<script src="order-scripts/order.js"></script>
+<script src="order-scripts/pending.js"></script>
+<script type="module" src="order-scripts/shopping-list.js"></script>
+</html>
