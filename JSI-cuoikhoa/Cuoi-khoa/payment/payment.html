@@ -15,6 +15,9 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Sevillana&display=swap');
     </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"
+    integrity="sha512-E8QSvWZ0eCLGk4km3hxSsNmGWbLtSCSUcewDQPQWZF6pEU8GlT8a5fF32wOl1i8ftdMhssTrF/OhyGWwonTcXA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 <body>
     <div id="header">
@@ -31,12 +34,12 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                         <div class="navbar-nav">
-                            <a class="nav-link" aria-current="page" href="#">Trang chủ</a>
-                            <a class="nav-link" href="#about">Về chúng tôi</a>
+                            <a class="nav-link" aria-current="page" href="../main-page/index.html">Trang chủ</a>
+                            <a class="nav-link" href="../main-page/index.html#about">Về chúng tôi</a>
                             <a class="nav-link" href="../order-page/order.html">Đặt hàng</a>
                             <a class="nav-link" href="#contacts">Liên hệ</a>                       
-                            <a class="nav-link" href="#about">Khuyến mãi</a>                                                
-                            <a class="nav-link" href="#all-product">Nổi bật</a>                    
+                            <a class="nav-link" href="../main-page/index.html#about">Khuyến mãi</a>                                                
+                            <a class="nav-link" href="../main-page/index.html#all-product">Nổi bật</a>                    
                         </div>
                     </div>
                 </div>
@@ -63,18 +66,49 @@
     </div>
 
     <div id="main-content">
-        <div id="hero-contain">
-            <div id="hero-content">
-                <form action="">
-                    <img src="../images/logo.png" alt="" srcset="">
-                    <input type="text" placeholder="Tên"> <br>
-                    <input type="text" placeholder="SĐT"> <br>
-                    <input type="text" placeholder="Địa chỉ"> <br>
-                    <button>Đặt hàng</button>
-                </form>  
+        <div id="hero">
+            <div id="hero-contain">
+                <div id="hero-content">
+                    <form action="">
+                        <img src="../images/logo.png" alt="" srcset="">
+                        <div id="pay-info">
+                            <div class="input">
+                                <input type="text" class="info" placeholder="Tên" id="name"><span style="right: 83%;" class="asterisk">*</span>
+                            </div>
+                            
+                            <div class="input">
+                                <input type="tel" class="info" placeholder="SĐT" id="phone"><span style="right: 79%;" class="asterisk">*</span>
+                            </div>
+                            
+                            <div class="input">
+                                <input type="text" class="info" placeholder="Địa chỉ" id="address"><span style="right: 69%;" class="asterisk">*</span>
+                            </div>
+                            
+                        </div>
+                        <p class="disclaimber"><span style="color: red;">*</span>Thông tin bắt buộc</p>
+                        <div id="method">
+                            <div>
+                                <input type="radio" name="payment-method" value="momo" id="momo"><label for="#momo">Chuyển khoản</label>
+                            </div>
+                            <div>
+                                <input type="radio" name="payment-method" value="cash" id="cash" checked><label for="#cash">Tiền mặt</label>
+                            </div>
+                        </div>
+                        <div id="online-pay">
+                            <img src="../images/QR.jpg" alt="">
+                        </div>
+                        <div id="cash-pay">
+                            <button id="pay-button">Thanh toán</button>
+                        </div>
+                        <p id="price"></p>
+                        <p class="disclaimber">*Mọi thông tin của khách hàng đều được mã hóa bảo mật</p>
+                        
+                    </form>  
+                </div>
+                
             </div>
-            
         </div>
+        
               
     </div>
 
@@ -121,4 +155,5 @@
     </div>
 </body>
 <script src="../main-page/index-scripts/navbar.js"></script>
+<script type="module" src="payment.js"></script>
 </html>

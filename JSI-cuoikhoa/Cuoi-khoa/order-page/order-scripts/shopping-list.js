@@ -2,7 +2,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
-import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-firestore.js"
 import { getAuth } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -17,7 +16,6 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);;
 
 const auth = getAuth();
 
@@ -30,10 +28,10 @@ const auth = getAuth();
 let toggleButton = document.getElementById("open-shoplist");
 let shoppingList = document.getElementById("pending-items");
 shoppingList.style.height = "0px";
-let a = 0;
 let price = 0;
+let orderConfirm = document.getElementById("orderConfirm");
 
-let cardContainer = document.getElementById("card-container");
+let billTable = document.getElementById("order-list");
 
 toggleButton.addEventListener("click", (e) => {
     if (shoppingList.style.height == "0px") {
@@ -42,73 +40,96 @@ toggleButton.addEventListener("click", (e) => {
         shoppingList.style.height = "0px";
     }
 })
-
 let orderedItems = JSON.parse(localStorage.getItem("orderedItems"))
-for (let i = 0; i < orderedItems.length; i++) {
-    let item = orderedItems[i];
+function addItems() {
+    for (let i = 0; i < orderedItems.length; i++) {
+        let item = orderedItems[i];
     
-    // create item card
-    let card = document.createElement("div");
-    card.classList.add("order-card");
-    cardContainer.appendChild(card);
+    
+        if ((item.price * item.quantity)>=1000 && (item.price * item.quantity)<1000000) {
+            price = ((item.price * item.quantity)/1000).toFixed(3);
+        } else {
+            price = item.price * item.quantity;
+        }
+    
+        billTable.innerHTML += `
+        <tr class="bill-item">
+            <td class="bill-content">${i+1}</td>
+            <td class="bill-content">${item.name}</td>
+            <td class="bill-content"><input class="quantity-input" type="number" value="${item.quantity}" onkeydown="return false" min="1" step="1"></td>
+            <td class="bill-content">${item.price}.000đ</td>
+            <td class="bill-content total-price">${price}.000đ</td>
+            <td class="bill-content"><button class="cancel-button">X</button></td>
+        </tr>
+        `
+    
+        
+    
+    
+        
+    }
+}
+function updatePrice() {
+    let allPrice = 0;
 
-
-
-    if ((item.price * item.quantity)>=1000 && (item.price * item.quantity)<1000000) {
-        price = ((item.price * item.quantity)/1000).toFixed(3);
-    } else {
-        price = item.price * item.quantity;
+    for (let i = 0; i < orderedItems.length; i++) {
+        let item = orderedItems[i];
+        allPrice += item.price * item.quantity;
     }
 
-    card.innerHTML = `
-        <img class="order-image" src="${item.image}" alt="">
-        <div class="order-title">
-            <h6 style="font-size: 10px;">${item.name}</h6>
-            <p style="border-right: 1px solid rgb(189, 189, 189); padding-right: 4px;">x${item.quantity}</p>
-        </div>
-        <p style="font-size: 10px">${price}.000đ</p>
-        
-        <button style="height: 20px; width: 20px; font-size: 10px; padding: 0;" class="cancel-order" type="submit">X</button>
-        
-    `
 
-    a += item.price * item.quantity;
-    
+    if (allPrice==0) {
+        orderConfirm.innerHTML = "Order"
+    } else if (allPrice<1000) {
+        orderConfirm.innerHTML = `Order - ${allPrice}.000đ` ;   
+    } else if (allPrice>=1000 && allPrice<1000000) {
+        orderConfirm.innerHTML = `Order - ${(allPrice/1000).toFixed(3)}.000đ`;
+    }
+    localStorage.setItem("price", allPrice)
 
-
-    
 }
 
-let orderConfirm = document.getElementById("orderConfirm");
-if (a==0) {
-    orderConfirm.innerHTML = orderConfirm.innerHTML
-} else if (a<1000) {
-    orderConfirm.innerHTML += ` - ${a}.000đ` ;   
-} else if (a>=1000 && a<1000000) {
-    orderConfirm.innerHTML += ` - ${(a/1000).toFixed(3)}.000đ`;
-}
+addItems()
+updatePrice()
 
-let cancelButtons = document.getElementsByClassName("cancel-order");
+
+let quantityInp = document.querySelectorAll(".quantity-input");
+quantityInp.forEach((input, index) => {
+    input.addEventListener("input", (e)=>{
+        
+        let item = orderedItems[index]
+        item.quantity = parseInt(input.value)
+        localStorage.setItem("orderedItems", JSON.stringify(orderedItems))
+        let totalPrice = input.parentElement.parentElement.getElementsByClassName("total-price")[0]
+        if ((item.price * item.quantity)>=1000 && (item.price * item.quantity)<1000000) {
+            price = ((item.price * item.quantity)/1000).toFixed(3);
+        } else {
+            price = item.price * item.quantity;
+        }
+        totalPrice.innerHTML = `${price}.000đ`
+        updatePrice()
+        
+    })
+})
+
+
+let cancelButtons = document.getElementsByClassName("cancel-button");
 
 for (let c = 0; c < cancelButtons.length; c++) {
     let button = cancelButtons[c];
     button.addEventListener("click", (e)=>{
         orderedItems.splice(c,1)
         localStorage.setItem("orderedItems", JSON.stringify(orderedItems))
-        
+        location.reload()
     })
 }
 
-
 orderConfirm.addEventListener("click", (e)=>{
     e.preventDefault()
-    set(ref(db, `UserList/${auth.currentUser.uid}/order`),
-    {
-        orderedItems
-    }).then(()=>{
-        alert("order sent")
-    }).catch((error)=>{
-        alert("error "+ error);
-    })
+    if (orderConfirm.innerHTML != "Order") {
+        document.location.replace("../payment/payment.html")
+    } else {
+        alert("Please buy before paying")
+    }
     
 })

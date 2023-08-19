@@ -20,8 +20,10 @@ const app = initializeApp(firebaseConfig);
 
 import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
 import { getDatabase, ref, child, get, set } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-database.js";
-
-const db = getDatabase();
+import {
+  getFirestore, onSnapshot, doc, getDoc, setDoc, collection, addDoc, updateDoc, deleteDoc, deleteField
+} from "https://www.gstatic.com/firebasejs/10.1.0/firebase-firestore.js";
+const db = getFirestore();
 const dbRef = ref(getDatabase());
 const auth = getAuth();
 
@@ -37,6 +39,18 @@ onAuthStateChanged(auth, (user) => {
     // User is signed in, see docs for a list of available properties
     // https://firebase.google.com/docs/reference/js/auth.user
     const uid = user.uid;
+    get(child(dbRef, `UserList/${uid}/role`)).then((snapshot) => {
+      if (snapshot.exists()) {
+        if (snapshot.val() == "employee") {
+          document.location.replace("../employee-console/console.html")
+        }
+      } else {
+        console.log("No data available");
+      }
+    }).catch((error) => {
+      console.error(error);
+    });
+
     get(child(dbRef, `UserList/${uid}/username`)).then((snapshot) => {
       if (snapshot.exists()) {
         
@@ -76,15 +90,15 @@ let submit = document.getElementById("review-submit")
 
 submit.addEventListener("click", (e)=>{
     e.preventDefault()
-    set(ref(db, `UserList/${auth.currentUser.uid}/comment`),
-    {
-        title: title.value,
-        content: content.value,
-
-    }).then(()=>{
-        alert("review sent")
-    }).catch((error)=>{
-        alert("error "+ error);
+    var ref = doc(db, "comments", auth.currentUser.uid)
+    setDoc(ref, {
+      title: title.value,
+      content: content.value
+    }).then(() => { 
+      alert("Gửi thành công")
+      // document.location.replace("../main-page/index.html")
+    }).catch((error) => {
+      alert("Lỗi khi gửi: " + error)
     })
     
 })

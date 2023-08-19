@@ -307,7 +307,7 @@ body {
 
 /* Pending */
 #pending {
-    width: 250px;
+    width: 30vw;
     position: fixed;
     bottom: 0;
     right: 0;
@@ -342,43 +342,26 @@ body {
     color: white;
     background-color: rgb(46, 46, 46);
 }
-
-#card-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    overflow: auto;
+.bill-content {
+    border-right: 1px solid black;
+    border-bottom: 1px solid black ;
+    text-align: center;
+}
+.quantity-input {
+    text-align: center;
+    width: 50px;
+    color: transparent;
+    text-shadow: 0 0 0 black;
+}
+.cancel-button {
+    font-size: 10px;
+}
+.cancel-button:hover {
+    color: white;
+    background-color: red;
 }
 
-.order-card {
-    border-bottom: 3px solid rgb(152, 160, 170);
-    width: 100%;
-    padding: 4px 0px;
-    height: 45px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-.order-title {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 60%;
-}
-.order-card h6 {
-    padding: 0;
-    margin: 0;
-    margin-right: 4px;
-}
 
-.order-card p {
-    padding: 0;
-    margin: 0;
-}
-
-.order-image {
-    height: 100%;
-}
 
 
 

@@ -61,13 +61,9 @@ function register(){
                 {
                     username: username.value,
                     role: "user",
-                    comment: {
-                        title: "",
-                        content: "",
-                    },
                 }).then(()=>{
                     
-                    document.location.replace("../main-page/index.html")
+                    document.location.replace("../login/login.html")
                 }).catch((error)=>{
                     alert("error "+ error);
                 })

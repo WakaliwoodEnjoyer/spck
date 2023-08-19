@@ -202,39 +202,39 @@ let other = [
 
 
 let categories = document.getElementsByClassName("category")
-let items = [coffee, fruitTea, milkTea, yogurt, juice, smoothie, blendedIce, food, other]
+let productType = [coffee, fruitTea, milkTea, yogurt, juice, smoothie, blendedIce, food, other]
 
 for (let index = 0; index < categories.length; index++) {
     let categoryPanel = categories[index].getElementsByClassName("product-panel")[0];
-    let currentProduct = items[index];
+    let currentProductType = productType[index];
 
-    for (let i = 0; i < currentProduct.length; i++) {
+    for (let i = 0; i < currentProductType.length; i++) {
 
-        let currentItem = currentProduct[i];            
+        let currentItem = currentProductType[i];            
         
-        let productPane = document.createElement("div");
-        productPane.classList.add("product-pane");
-
-        let productImage = document.createElement("img");
-        productImage.src = currentItem.image;
-
-        let productTitle = document.createElement("h3");
-        productTitle.classList.add("desc");
-        productTitle.innerHTML = currentItem.name
+        let productPane = document.createElement("div")
+        productPane.classList.add("product-pane")
 
         if (index != 8) {
-            let productPrice = document.createElement("p");
-            productPrice.classList.add("desc");
-            productPrice.innerHTML = currentItem.price;
+            productPane.innerHTML =
+            `
+                <img src="${currentItem.image}">
+                <h3 class="desc">${currentItem.name}</h3>
+                <p class="desc">${currentItem.price}</p>
+            `
 
             categoryPanel.appendChild(productPane);
-            productPane.appendChild(productImage);
-            productPane.appendChild(productTitle);
-            productPane.appendChild(productPrice);
+            
         } else {
+            productPane.innerHTML =
+            `
+                <img src="${currentItem.image}">
+                <h3 class="desc">${currentItem.name}</h3>
+                
+            `
+
             categoryPanel.appendChild(productPane);
-            productPane.appendChild(productImage);
-            productPane.appendChild(productTitle);
+
         }
         
 

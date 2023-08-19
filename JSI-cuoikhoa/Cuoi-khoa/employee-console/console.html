@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thu ngân</title>
+    <link rel="icon" type="image" href="../images/logo.png">
+
+    <link rel="stylesheet" href="employee.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"
+    integrity="sha512-E8QSvWZ0eCLGk4km3hxSsNmGWbLtSCSUcewDQPQWZF6pEU8GlT8a5fF32wOl1i8ftdMhssTrF/OhyGWwonTcXA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+
+<body>
+
+    <button id="logout">Đăng xuất</button>
+
+    <h1>Đơn hàng hiện tại</h1>
+
+    <div id="orders">
+
+
+    </div>
+
+
+
+
+
+
+
+
+</body>
+<script>
+    function collapse(element) {
+        let collapsible = element.parentElement.parentElement.getElementsByClassName("collapse")
+        if (!collapsible[0].classList.contains("collapsed")) {
+            collapsible[0].classList.add("collapsed")
+        } else {
+            collapsible[0].classList.remove("collapsed")
+        }
+    }
+
+    
+</script>
+<script type="module" src="employee.js"></script>
+
+</html>
